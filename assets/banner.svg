@@ -26,7 +26,7 @@
     font-weight="700"
     letter-spacing="-1"
     fill="#ffffff"
-    text-rendering="geometricPrecision">skill-router</text>
+    text-rendering="geometricPrecision">Skill Router</text>
 
   <text x="56" y="103" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="1.5" fill="#cc2200" text-rendering="geometricPrecision">Mad House</text>
 
