@@ -7,11 +7,13 @@
 
 ---
 
-Semantic routing for Claude Code skills. Instead of exposing all 60+ skill descriptions in every session (and paying the token cost each time), skill-router builds a compact catalog from frontmatter and scores matches against a natural-language query.
+Semantic routing for agent skills. Instead of exposing all 60+ skill descriptions in every session (and paying the token cost each time), skill-router builds a compact catalog from frontmatter and scores matches against a natural-language query.
+
+Works with any agent harness that uses markdown-based skill definitions: Claude Code, Codex, Gemini CLI, or your own custom setup.
 
 ## The problem
 
-Claude Code loads every installed skill's full description at session start. With a large skill library, this is significant token overhead on every single message. And when you add a new skill, you have to remember what it is called to invoke it.
+Agent harnesses load every installed skill's full description at session start. With a large skill library, this is significant token overhead on every single message. And when you add a new skill, you have to remember what it is called to invoke it.
 
 ## How it works
 
@@ -93,3 +95,17 @@ Skills missing these fields are not routable and will be skipped.
 ---
 
 Built by [Mad House](https://github.com/madebymadhouse). See the full skill library at [madebymadhouse/skills](https://github.com/madebymadhouse/skills).
+
+## Using with other harnesses
+
+`SKILLS_DIR` defaults to `~/.claude/commands` for Claude Code. Point it at any directory of skill markdown files:
+
+```bash
+# Codex
+SKILLS_DIR=~/.codex/commands bash scripts/route.sh "your task"
+
+# Custom
+SKILLS_DIR=/path/to/skills bash scripts/catalog.sh
+```
+
+The only requirement: each skill file must be a markdown file with a `description:` field in its frontmatter. `tags:` and `triggers:` improve routing accuracy but are optional.
