@@ -1,4 +1,11 @@
-# skill-router
+![Skill Router](assets/banner.svg)
+
+<a href="#install"><img src="assets/buttons/btn-install.svg" /></a>
+<a href="#usage"><img src="assets/buttons/btn-usage.svg" /></a>
+<a href="#scoring"><img src="assets/buttons/btn-scoring.svg" /></a>
+<a href="#standard"><img src="assets/buttons/btn-standard.svg" /></a>
+
+---
 
 Semantic routing for Claude Code skills. Instead of exposing all 60+ skill descriptions in every session (and paying the token cost each time), skill-router builds a compact catalog from frontmatter and scores matches against a natural-language query.
 
@@ -12,15 +19,14 @@ Each skill has a `SKILL.md` with structured frontmatter:
 
 ```yaml
 name: deploy-service
-description: Deploy a service to production via Coolify. One command from local to live.
-tags: deploy, vps, coolify
+description: Deploy a service to production. One command from local to live.
+tags: deploy, vps
 triggers:
   - "deploy to production"
   - "push to vps"
-  - "deploy service"
 ```
 
-`catalog.sh` reads all skill frontmatter and emits a compact one-line-per-skill index. `route.sh` scores that index against your query using tag matches (3 pts), description keywords (2 pts), and trigger phrases (4 pts). The top matches come back in under a second.
+`catalog.sh` reads all skill frontmatter and emits a compact one-line-per-skill index. `route.sh` scores that index against your query using tag matches, description keywords, and trigger phrases. Top matches return in under a second.
 
 ## Install
 
@@ -74,16 +80,16 @@ SKILLS_DIR=/path/to/your/skills bash ~/.claude/commands/skill-router/scripts/rou
 
 Top 5 results returned. Score 0 = no match.
 
-## Skill frontmatter standard
+## Standard
 
 For reliable routing, every skill should have:
 
-- `description:` - one tight sentence (this is the catalog entry)
-- `tags:` - comma-separated domain tags
-- `triggers:` - explicit phrases that unambiguously map to this skill
+- `description:` — one tight sentence (this is the catalog entry)
+- `tags:` — comma-separated domain tags
+- `triggers:` — explicit phrases that unambiguously map to this skill
 
 Skills missing these fields are not routable and will be skipped.
 
-## Part of the Mad House toolkit
+---
 
 Built by [Mad House](https://github.com/madebymadhouse). See the full skill library at [madebymadhouse/skills](https://github.com/madebymadhouse/skills).
